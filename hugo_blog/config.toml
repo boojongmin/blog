@@ -11,4 +11,5 @@ disqusShortname = "bjm"
 
 [Params]
   Author = "durtchrt"
+  Github = "https://github.com/durtchrt/durtchrt.github.io/blob/master/hugo_blog/content/"
     
