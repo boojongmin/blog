@@ -1,7 +1,6 @@
 
 date = "2016-12-12T14:04:52+09:00"
-title = "hazelcast"
-draft = true
+title = "20161212: hazelcast 교육 내용 정리"
 
 +++
 
@@ -9,7 +8,6 @@ draft = true
 
 ###[참고 링크](http://estech.biz/2016/11/05/seoul-hazelcast-meetup-ppt-2016-11-03/)
 ###[PDF 링크](../hazelcast.pdf)
--> 아지트에 공유된 자료들 - 실제로는 ppt를 새로 준비해서 가져옴.
 
 (참고 - 여기서 사용하는 노드는 hazelcast가 올라간 jvm을 의미)
 
