@@ -1,15 +1,25 @@
-baseurl = "http://durtchrt.github.io/blog/"
-title = "개발 저장소"
+baseurl = "https://example.com/"
+title = "SiteTitle"
 theme = "hugo_theme_robust"
-languageCode = "en-us"
-copyright = "durtchrt"
-googleAnalytics = "UA-86354121-1"
-disqusShortname = "bjm"
 
-[Taxonomies]
-    tag = "tags"
+googleAnalytics = "UA-XXXXXXXX-XX" # Optional
+disqusShortname = "XYW"
 
-[Params]
-  Author = "durtchrt"
-  Github = "https://github.com/durtchrt/durtchrt.github.io/blob/master/hugo_blog/content/"
-    
+[params]
+  description = "This is site description"
+  dateformat = "Jan 2, 2006" # Optional
+  # Fonts settings.
+  googlefonts = "https://fonts.googleapis.com/css?family=Lobster|Lato:400,700" # Optional, Include google fonts.
+  fontfamily = "Lato,YuGothic,'Hiragino Kaku Gothic Pro',Meiryo,sans-serif" # Optional, Override body font family.
+  logofontfamily = "Lobster, cursive" # Optional, Override logo font.
+
+[params.author]
+  thumbnail = "images/author.jpg"
+  name = "John Doe"
+  description = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
+  facebook = "https://www.facebook.com/daisuke.tsuji.735"
+  twitter = "https://twitter.com/dim0627"
+  github = "https://github.com/dim0627"
+
+[outputs]
+page = [ "HTML", "AMP" ] # if you want AMP enable.

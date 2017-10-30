@@ -1,2 +1,2 @@
 #/bin/bash
-hugo --theme=hugo_theme_robust
+hugo --theme=hugo-theme-robust

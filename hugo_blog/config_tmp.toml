@@ -1,0 +1,30 @@
+baseurl = "http://durtchrt.github.io/blog/"
+title = "개발 저장소"
+theme = "hugo_theme_robust"
+languageCode = "en-us"
+googleAnalytics = "UA-108897430-1"
+disqusShortname = "blog-durtchrt-com"
+
+[Taxonomies]
+    tag = "tags"
+
+[params]
+  Author = "durtchrt"
+  Github = "https://github.com/durtchrt/durtchrt.github.io/blob/master/hugo_blog/content/"
+  description = "hello world"
+  dateformat = "2006-10-1" # Optional
+  googlefonts = "https://fonts.googleapis.com/css?family=Lobster|Lato:400,700" # Optional, Include google fonts.
+  fontfamily = "Lato,YuGothic,'Hiragino Kaku Gothic Pro',Meiryo,sans-serif" # Optional, Override body font family.
+  logofontfamily = "Lobster, cursive" # Optional, Override logo font.
+
+[params.author]
+  thumbnail = "images/author.jpg"
+  name = "durtchrt"
+  description = "hello world"
+  facebook = "https://www.facebook.com/boojongmin"
+  # twitter = "https://twitter.com/boojongmin"
+  github = "https://github.com/boojongmin"
+  linkedin = "https://www.linkedin.com/in/%EC%A2%85%EB%AF%BC-%EB%B6%80-9a637b135"
+
+[outputs]
+page = [ "HTML", "AMP" ] # if you want AMP enable.
