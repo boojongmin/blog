@@ -1,12 +1,12 @@
-baseurl = "https://example.com/"
-title = "SiteTitle"
+baseurl = "http://blog.durtchrt.com"
+title = "durtchrt"
 theme = "hugo_theme_robust"
 
-googleAnalytics = "UA-XXXXXXXX-XX" # Optional
-disqusShortname = "XYW"
+googleAnalytics = "UA-108897430-1" # Optional
+disqusShortname = "blog-durtchrt-com"
 
 [params]
-  description = "This is site description"
+  description = "hello world"
   dateformat = "Jan 2, 2006" # Optional
   # Fonts settings.
   googlefonts = "https://fonts.googleapis.com/css?family=Lobster|Lato:400,700" # Optional, Include google fonts.
@@ -15,11 +15,11 @@ disqusShortname = "XYW"
 
 [params.author]
   thumbnail = "images/author.jpg"
-  name = "John Doe"
-  description = "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p><p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>"
-  facebook = "https://www.facebook.com/daisuke.tsuji.735"
-  twitter = "https://twitter.com/dim0627"
-  github = "https://github.com/dim0627"
+  name = "boojongmin"
+  description = "<p>Hello world!</p>"
+  facebook = "https://www.facebook.com/boojongmin"
+  # twitter = "https://twitter.com/dim0627"
+  github = "https://github.com/boojongmin"
 
 [outputs]
 page = [ "HTML", "AMP" ] # if you want AMP enable.
