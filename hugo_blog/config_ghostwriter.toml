@@ -18,7 +18,7 @@ disqusShortname = "blog-durtchrt-com"
     headline = "개발저장소"
     description = "개발 관련 저장소입니다."
     github = "https://github.com/durtchrt"
-    linkedin = "https://linkedin.com/in/XXX/"
+    linkedin = "https://www.linkedin.com/in/%EC%A2%85%EB%AF%BC-%EB%B6%80-9a637b135/"
     opengraph = true
 
 [Permalinks]
