@@ -1,4 +1,4 @@
-baseurl = "http://blog.durtchrt.com"
+baseurl = "http://blog.durtchrt.com/"
 title = "durtchrt"
 theme = "hugo_theme_robust"
 
