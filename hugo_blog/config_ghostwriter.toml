@@ -4,7 +4,7 @@ theme = "ghostwriter"
 languageCode = "en-us"
 copyright = "durtchrt"
 googleAnalytics = "UA-86354121-1"
-disqusShortname = ""
+disqusShortname = "blog-durtchrt-com"
 
 [Author]
     name = "durtchrt"
