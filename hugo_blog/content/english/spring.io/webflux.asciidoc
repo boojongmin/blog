@@ -31,62 +31,51 @@ e.g 스프링 MVC 컨트롤러와 리액티브 `웹클라이언트`
 
 
 
-
-
 [[webflux-new-framework]]
 === 새로운 웹프레임워크가 왜 필요할까?
 
-대답의 일부로 적은 스레드 갯수로 비동기를 다루고 논블럭킹 웹스택과 
+첫째, 적은 스레드 갯수로 비동기를 다루고 논블럭킹 웹스택과 
 적은 하드웨어 자원으로 확장이 필요하다는 것이다.서블렛 3.1은 
 논블럭킹 I/O API를 지원했다. 하지만, 동기(`Filter`, `Servlet`), 블럭킹(`getParameter`, `getPart`)은 Servlet API로 부터 멀어지게합니다.
 using it leads away from the rest of the Servlet API where contracts are synchronous (`Filter`, `Servlet`) or blocking (`getParameter`,`getPart`). 
-이것이 모든 논블럭킹 런타임에 대해 기반 역할을하는 새로운 공통 API 설계 동기였습니다.
-그건 네티처럼 비동기, 논블럭이 잘만들어진 서버들 때문에 중요합니다.
+이것이 모든 논블럭킹 런타임에 대해 기반 역할을하는 새로운 공통 API를 설계하게된 동기였습니다.
+공통 API는 네티처럼 비동기, 논블럭 기반의 잘만들어진 서버들 때문에 중요합니다.
 
-다른 대답으로는 함수형 프로그래밍입니다. Java 5때 어노테이션 
-추가처럼 기회가 생겼습니다. -- e.g. 어노테이션이 붙은 REST 컨트롤러나 단위 테스트.
+둘째, 함수형 프로그래밍입니다. Java 5때 어노테이션 
+추가처럼 Java 8에서도 기회가 생겼습니다. -- e.g. 어노테이션이 붙은 REST 컨트롤러나 단위 테스트.
 자바8에 람다 표현식이 추가됨은 자바에서 함수형 API를 이용할 기회가 생겼습니다.
-이건 논블럭킹 어플리케이션과 continuation 스타일 API에 도움이 됩니다. -- 대중화된 `CompletableFuture`나 
-http://reactivex.io/[ReactiveX]는 비동기 로직의 선언적 구성을 허용합니다. 
-자바8은 스프링 웹플럭스가 어노테이션이 붙은 컨트롤러와 함께 함수형 웹 엔드포인트를 제공할 수 있게하였습니다.
+이건 논블럭킹 어플리케이션과 continuation 스타일 API에 도움이 됩니다. -- `CompletableFuture`나 
+http://reactivex.io/[ReactiveX]는 비동기 로직의 선언적 프로그래밍을 지원합니다.
+자바8은 스프링 웹플럭스가 어노테이션이 붙은 컨트롤러와 함수형 웹 엔드포인트 두가지를 제공할 수 있게하였습니다.
 
 
 [[webflux-why-reactive]]
 === 리액티브: 무엇이고 왜 쓰는거야?
 
-우리는 논블럭킹과 함수형에 다가갔지만 왜 리액티브이며 우리에게 어떤 의미일까?
+왜 리액티브이며 우리에게 어떤 의미일까?
 
-"리액티브" 용어는 변화에 반응하는 프로그램 모델을 가리킨다. --
+"리액티브"란 용어는 변화에 반응하는 프로그램 모델입니다. --
 네트워크 컨퍼넌트는 I/O 이벤트에 반응하고, UI 컨트롤러는 마우스 이벤트에 반응하고 기타.
-그런 의미에서 논블럭킹은 완료 오퍼레이션이나 사용할수 있는 데이터에 반응합니다.
-논블럭킹 역압 또한 중요한 메카니즘입니다.  동기, 명령형 코드, 블럭킹 호출에서 클라이언트를 기다리게 강제하는 것은 자연스러운 것이였다.
+그런 의미에서 논블럭킹은 완료 명령(시그널)이나 데이터가 사용할 수 있을 때 반응합니다.
+논블럭킹 역압 또한 중요한 메카니즘입니다.  동기, 명령형 코드, 블럭킹 호출에서 클라이언트를 기다리게 강제했습니다.(역주 - request가 처리량 이상 오는경우 응답이 급격히 느려지는 것을 의미하는것으로 보임.)
 하지만 논블럭킹 코드는 처리하는 놈의 처리량을 넘치지 않게 이벤트 속도를 조절하는 것이 중요합니다.
 
-리액티브 스트림은 https://github.com/reactive-streams/reactive-streams-jvm/blob/v1.0.1/README.md#specification[small spec] 와
+reactive streams(역주 - http://www.reactive-streams.org/[reactive streams] 리액티브 라이브러리 표준 인터페이스)는 https://github.com/reactive-streams/reactive-streams-jvm/blob/v1.0.1/README.md#specification[small spec] 와
 자바 9의 http://download.java.net/java/jdk9/docs/api/java/util/concurrent/Flow.html[adopted] 이며 이들은 역압과 비동기 구성요소들간 상호작용을 정의합니다.
 예를들어 데이터 저장소 -- http://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/org/reactivestreams/Publisher.html[Publisher]는 
 HTTP 서버처럼 데이터를 생성할 수 있습니다.
 http://www.reactive-streams.org/reactive-streams-1.0.1-javadoc/org/reactivestreams/Subscriber.html[Subscriber]는 응답을 쓸수 있습니다.
-리액티브 스트림의 주요 목적은 구독자가 퍼블리셔가 발생하는 데이터를 조절하는데 있습니다.
-
-[NOTE]
-====
-*질문: 퍼블리셔가 속도를 늦출수 없다면 어쩌죠?* +
-(The purpose of Reactive Streams is only to establish the mechanism and a boundary.)
-만약 퍼블리셔가 속도를 늦출수 없다면 (역자 - 누가?) 버퍼링, 삭제 또는 실패를 결정해야합니다.
-====
-
+리액티브 스트림의 주요 목적은 구독자가 퍼블리셔로부터 발생하는 데이터를 조절하는데 있습니다.
 
 
 
 
 [[webflux-reactive-api]]
 === 리액티브 API
-리액티브 스트림은 상오 운용성에 중용한 역할을 합니다. 
-그건 라이브러리나 하부구조인데 너무 로우레벨이라 어플리케이션 API에 유용하지 않다. 어플리케이션이 원하는건 
-비동기 로직을 구성하는데 필요로하는 더 추상화되고 더 풍부한 표현력을 가진 함수형 API이다. -- 컬렉션만 적용된 자바 8 `Stream` API와 유사하다.
+reactive streams는 인터페이스로 중요한 역할을 합니다만 
+reactive stremas는 너무 로우레벨이라 어플리케이션 API에 유용하지 않습니다. 어플리케이션이 원하는건 
+비동기 로직을 구성하는데 필요로하는 더 추상화되고 더 풍부한 표현력을 가진 (컬렉션만 적용된 자바 8 `Stream` API와 유사한) 함수형 API입니다. 
 이게 리액티브 라이브러리가 수행하는 역할입니다.
-
 
 
 https://github.com/reactor/reactor[Reactor]은 Spring WebFlux를 위해 선택한 리액티브 라이브러리입니다.
@@ -105,24 +94,15 @@ ReactiveX의 http://reactivex.io/documentation/operators.html[vocabulary of oper
 
 
 [[webflux-programming-models]]
-=== Programming models
+=== 프로그래밍 모델
 
-The `spring-web` module contains the reactive foundation that underlies Spring WebFlux --
-HTTP abstractions, Reactive Streams server adapters, reactive codecs, and a
-core Web API whose role is comparable to the Servlet API but with non-blocking semantics.
+`spring-web`모듈은 스프링 웹플럭스의 기초가 되는 리액티브 기반을 포함합니다. -- HTTP 추상화, 리액티브 스트림 서버 어댑터, 리액티브 코덱, 핵심 Web API
 
-On that foundation Spring WebFlux provides a choice of two programming models:
+스프링 웹플럭스는 두가지 프로그래밍 모델 선택할 수 있게 제공합니다.
 
-- <<webflux-controller>> -- consistent with Spring MVC, and based on the same annotations
-from the `spring-web` module. Both Spring MVC and WebFlux controllers support reactive
-(Reactor, RxJava) return types and as a result it is not easy to tell them apart. One notable
-difference is that WebFlux also supports reactive `@RequestBody` arguments.
-- <<webflux-fn>> -- lambda-based, lightweight, functional programming model. Think of
-this as a small library or a set of utilities that an application can use to route and
-handle requests. The big difference with annotated controllers is that the application
-is in charge of request handling from start to finish vs declaring intent through
-annotations and being called back.
-
+- <<웹플럭스 컨트롤러>> -- 스프링 MVC와 일치. `spring-web` 모듈과 동일한 어노테이션 기반 컨트롤러.
+스프링 MVC와 WebFlux 컨트롤러는 반환 타입으로 리액티브(Reactor, RxJava)를 지원합니다. 그래서 스프링 MVC와 WebFlux를 구별하기란 쉽지 않습니다.
+- <<웹플럭스-fn>> -- 가볍고, 람다 기반의 함수형 프로그래밍 모델입니다. 라우팅과 리퀘스트 처리를 할수 있는 작은 라이브러리 또는 유틸리티의 셋으로 생각하세요.
 
 
 [[webflux-framework-choice]]
