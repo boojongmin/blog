@@ -1,6 +1,0 @@
-[submodule "hugo_blog/themes/hugo_theme_robust"]
-	path = hugo_blog/themes/hugo_theme_robust
-	url = https://github.com/dim0627/hugo_theme_robust.git
-[submodule "hugo_blog/themes/hugo-theme-even"]
-	path = hugo_blog/themes/hugo-theme-even
-	url = https://github.com/olOwOlo/hugo-theme-even.git

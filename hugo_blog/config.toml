@@ -1,6 +1,9 @@
 baseurl = "http://durtchrt.github.io/blog/"
 title = "durtchrt"
-theme = "hugo_theme_robust"
+theme = "ananke"
+
+
+defaultContentLanguage = "en"
 
 googleAnalytics = "UA-108897430-1" # Optional
 disqusShortname = "blog-durtchrt-com"
